@@ -7,23 +7,18 @@ class Follower(Node):
 
     def __init__(self):
         super().__init__('follower')
-        self.sub = self.create_subscription(Float32, '/target_position', self.callback, 10)
+        self.sub = self.create_subscription(Float32, '/target', self.callback, 10)
         self.pub = self.create_publisher(Twist, '/cmd_vel', 10)
 
     def callback(self, msg):
         cmd = Twist()
-
-        if msg.data > 0.2:
-            cmd.angular.z = -0.5
-        elif msg.data < -0.2:
-            cmd.angular.z = 0.5
-        else:
-            cmd.linear.x = 0.4
-
+        cmd.linear.x = float(msg.data)
+        cmd.angular.z = 0.0
         self.pub.publish(cmd)
 
-def main(args=None):
-    rclpy.init(args=args)
+def main():
+    rclpy.init()
     node = Follower()
     rclpy.spin(node)
+    node.destroy_node()
     rclpy.shutdown()
