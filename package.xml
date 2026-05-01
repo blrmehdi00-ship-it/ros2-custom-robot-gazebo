@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>my_robot_project</name>
+  <version>0.0.0</version>
+  <description>ROS2 Gazebo robot project</description>
+
+  <maintainer email="blrmehdi00@gmail.com">Mehdi</maintainer>
+  <license>Apache-2.0</license>
+
+  <depend>rclpy</depend>
+  <depend>std_msgs</depend>
+  <depend>geometry_msgs</depend>
+  <depend>gazebo_ros</depend>
+</package>
